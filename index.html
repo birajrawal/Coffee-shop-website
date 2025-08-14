@@ -1,58 +1,1002 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aroma Espresso Sip Cafe | Fresh Coffee, Pastries, Salads & All-Day Breakfast</title>
+  <meta name="description" content="Aroma Espresso Sip Cafe serves fresh coffee, flaky pastries, vibrant salads, and all-day breakfast with Mediterranean flair. Visit us for dine-in, catering, and online ordering." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#8B4513;      
+      --bg:#F5F5DC;          
+      --green:#228B22;       
+      --ink:#2b2b2b;
+      --ink-soft:#4b4b4b;
+      --white:#ffffff;
+      --maxw:1200px;
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --header-h:72px;
+    }
 
-    
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:20px}
+
+    /* Header */
+    header{
+      position:fixed; inset-block-start:0; inset-inline:0;
+      height:var(--header-h);
+      background:rgba(245,245,220,.9);
+      -webkit-backdrop-filter:saturate(160%) blur(8px);
+      backdrop-filter:saturate(160%) blur(8px);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      z-index:999;
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      height:var(--header-h);
+    }
+    .logo{
+      font-family:"Playfair Display", serif;
+      font-weight:700; font-size:1.25rem; letter-spacing:.3px;
+      color:var(--accent);
+      display:flex; align-items:center; gap:.6rem;
+    }
+    .logo .leaf{
+      width:22px;height:22px;display:inline-block; border-radius:50%;
+      background:conic-gradient(from 90deg,var(--green),#5fbf5f,var(--green));
+      box-shadow:0 2px 6px rgba(0,0,0,.15);
+    }
+    nav ul{
+      list-style:none; display:flex; gap:22px; margin:0; padding:0; align-items:center;
+    }
+    nav a{font-weight:500; color:var(--ink-soft); opacity:.9}
+    nav a:hover{color:var(--accent)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:.7rem 1.1rem; border-radius:999px; font-weight:600; border:2px solid transparent; transition:.25s ease;
+      cursor:pointer; text-align:center;
+    }
+    .btn-order{
+      background:linear-gradient(135deg,var(--green),#2fbf2f);
+      color:var(--white);
+      box-shadow:0 8px 16px rgba(34,139,34,.2);
+    }
+    .btn-order:hover{transform:translateY(-2px)}
+    .btn-outline{
+      border-color:var(--accent); color:var(--accent); background:transparent;
+    }
+    .btn-outline:hover{background:var(--accent); color:var(--white)}
+
+    /* Mobile menu */
+    .hamburger{display:none; border:none; background:transparent; padding:8px; cursor:pointer}
+    .hamburger span{display:block;width:26px;height:3px;background:var(--ink);margin:5px 0;border-radius:2px;transition:.25s}
+    .mobile-nav{display:none; position:fixed; inset:72px 0 auto 0; background:var(--bg); border-bottom:1px solid rgba(0,0,0,.06); z-index:998}
+    .mobile-nav a{display:block;padding:14px 20px;border-top:1px solid rgba(0,0,0,.05)}
+    .mobile-nav .btn-order{margin:12px 20px}
+
+    /* Sections baseline */
+    section{padding:80px 0; scroll-margin-top:calc(var(--header-h) + 10px)}
+    .section-title{
+      font-family:"Playfair Display", serif;
+      font-size:2rem; line-height:1.2; margin:0 0 12px; color:var(--accent);
+    }
+    .section-sub{margin:0 0 32px; color:var(--ink-soft)}
+
+    /* Hero */
+    .hero{
+      padding:0; position:relative; min-height:78vh; display:grid; place-items:center;
+      background: #000;
+      margin-top:var(--header-h);
+    }
+    .hero::before{
+      content:""; position:absolute; inset:0;
+      background:url('https://source.unsplash.com/random/1920x1080/?coffee,pastry') center/cover no-repeat;
+      filter:brightness(.55) saturate(1.1);
+    }
+    .hero .content{
+      position:relative; z-index:1; color:#fff; text-align:center; padding:40px 20px;
+      max-width:900px;
+      animation:fadeUp .9s ease both .05s;
+    }
+    .hero h1{
+      font-family:"Playfair Display", serif;
+      font-size:clamp(2rem,4vw,3.2rem); margin:0 0 14px; letter-spacing:.3px;
+    }
+    .hero p{font-size:clamp(1rem,1.6vw,1.15rem); opacity:.95; margin-bottom:26px}
+    .hero .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+
+    /* About */
+    .about{
+      background:
+        radial-gradient(80% 60% at 10% 10%, rgba(139,69,19,.07), transparent 60%),
+        radial-gradient(70% 55% at 90% 10%, rgba(34,139,34,.06), transparent 60%);
+    }
+    .about-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:28px; align-items:center}
+    .about p{font-size:1.05rem}
+    .about-card{
+      background:var(--white); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow);
+    }
+    .about img{border-radius:var(--radius); box-shadow:var(--shadow)}
+
+    /* Menu */
+    .menu .tabs{
+      display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px
+    }
+    .tab-btn{
+      background:#fff; border:1px solid rgba(0,0,0,.08); padding:.55rem .9rem; border-radius:999px; cursor:pointer; transition:.25s;
+    }
+    .tab-btn[aria-selected="true"]{background:var(--accent); color:#fff; border-color:var(--accent)}
+    .menu-grid{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
+    }
+    .card{
+      background:#fff; border-radius:16px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column;
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover{transform:translateY(-4px); box-shadow:0 14px 36px rgba(0,0,0,.12)}
+    .card img{aspect-ratio:4/3; object-fit:cover}
+    .card .info{padding:14px 14px 16px}
+    .card h4{margin:4px 0 6px; font-family:"Playfair Display", serif}
+    .price{font-weight:700; color:var(--green)}
+    .pill{display:inline-block; background:rgba(34,139,34,.08); color:var(--green); padding:.15rem .5rem; border-radius:999px; font-size:.8rem; margin-left:8px}
+    .card .info .btn-order { margin-top: 10px; font-size: 0.9rem; padding: 0.5rem 1rem; }
+
+    .menu-panel[hidden]{display:none}
+    .menu-note{margin-top:14px; font-size:.95rem; color:var(--ink-soft)}
+
+    /* Catering */
+    .catering .wrap{
+      display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:start;
+    }
+    form{
+      background:#fff; padding:18px; border-radius:var(--radius); box-shadow:var(--shadow);
+      display:grid; gap:12px;
+    }
+    label{font-weight:600; font-size:.9rem}
+    input, textarea{
+      width:100%; padding:.8rem .9rem; border:1px solid rgba(0,0,0,.12); border-radius:12px; outline:none; font:inherit;
+      background:#fff;
+    }
+    textarea{min-height:120px; resize:vertical}
+    .helper{font-size:.85rem; color:var(--ink-soft)}
+    .success{display:none; padding:10px 12px; background:rgba(34,139,34,.09); border:1px solid rgba(34,139,34,.25); color:var(--green); border-radius:12px}
+
+    /* Social (Carousel) */
+    .carousel{
+      position:relative; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow); background:#fff;
+    }
+    .track{
+      display:flex; transition:transform .5s ease; will-change:transform;
+    }
+    .slide{
+      min-width:100%; position:relative;
+    }
+    .slide img{width:100%; height:420px; object-fit:cover}
+    .overlay{
+      position:absolute; inset:auto 0 0 0; background:linear-gradient(180deg,transparent,rgba(0,0,0,.55));
+      color:#fff; padding:16px 14px; display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
+    }
+    .meta{font-size:.95rem; opacity:.95}
+    .hash{opacity:.9; font-size:.85rem}
+    .controls{
+      position:absolute; inset:0; display:flex; justify-content:space-between; align-items:center; pointer-events:none;
+    }
+    .controls button{
+      pointer-events:auto; border:none; width:44px; height:44px; border-radius:50%; display:grid; place-items:center;
+      background:rgba(0,0,0,.35); color:#fff; cursor:pointer; transition:.25s;
+    }
+    .controls button:hover{background:rgba(0,0,0,.55)}
+    .dots{
+      position:absolute; inset:auto 0 10px 0; display:flex; gap:6px; justify-content:center;
+    }
+    .dot{width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.6); border:1px solid rgba(0,0,0,.15)}
+    .dot[aria-current="true"]{background:#fff}
+
+    /* Locations */
+    .locations .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .loc{
+      background:#fff; border-radius:var(--radius); padding:16px; box-shadow:var(--shadow)
+    }
+    .loc small{color:var(--ink-soft)}
+    .hours{margin-top:8px; font-size:.95rem}
+    .map{
+      margin-top:10px; border-radius:12px; overflow:hidden; border:1px solid rgba(0,0,0,.08)
+    }
+    .map img{aspect-ratio:16/9; object-fit:cover}
+
+    /* Footer */
+    footer{
+      background:#151515; color:#d9d9d9; padding:40px 0 26px; margin-top:40px;
+    }
+    .foot-grid{display:grid; grid-template-columns:2fr 1fr 1fr; gap:24px}
+    .foot a{color:#d9d9d9; opacity:.9}
+    .socials{display:flex; gap:12px}
+    .copyright{margin-top:14px; color:#a7a7a7; font-size:.95rem}
+
+    /* Reveal animation */
+    .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease}
+    .reveal.visible{opacity:1; transform:none}
+    @keyframes fadeUp{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none}}
+
+    /* Responsive */
+    @media (max-width:1040px){
+      .about-grid, .catering .wrap{grid-template-columns:1fr}
+      .menu-grid{grid-template-columns:repeat(2,1fr)}
+      .locations .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:760px){
+      nav ul{display:none}
+      .hamburger{display:block}
+      .hero .content{padding:30px 16px}
+      .menu-grid{grid-template-columns:1fr}
+      .locations .grid{grid-template-columns:1fr}
+      .slide img{height:320px}
+    }
+
+    /* ===== Modal Styles ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+    }
+    .modal-content {
+      background: var(--white);
+      margin: 10% auto;
+      padding: 30px;
+      width: 400px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow);
+      animation: fadeIn 0.3s ease;
+      border: 1px solid rgba(0,0,0,.08);
+    }
+    .modal-content h2 {
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: .8rem .9rem;
+      margin: 10px 0;
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 12px;
+      outline: none;
+      font: inherit;
+      background: #fff;
+      transition: border .25s ease;
+    }
+    .modal-content input:focus {
+      border-color: var(--accent);
+    }
+    .modal-content button {
+      padding: .7rem 1.1rem;
+      background: linear-gradient(135deg, var(--accent), #b5651d);
+      color: var(--white);
+      border: none;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .25s ease;
+      width: 100%;
+      margin-top: 10px;
+    }
+    .modal-content button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(139,69,19,.2);
+    }
+    .modal-content p {
+      margin-top: 15px;
+      font-size: .95rem;
+      color: var(--ink-soft);
+    }
+    .modal-content a {
+      color: var(--accent);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .close {
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--ink-soft);
+      margin-bottom: 10px;
+    }
+    .close:hover {
+      color: var(--ink);
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
 </head>
 <body>
-    <h1> I am Learning javascript</h1>
-    <script>
-        // let value= prompt("Enter your age");
+  <!-- Header -->
+  <header>
+    <div class="container nav" aria-label="Top Navigation">
+      <a href="#home" class="logo" aria-label="Aroma Espresso Sip Cafe home">
+        <span class="leaf" aria-hidden="true"></span>
+        Aroma Espresso Sip Cafe
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#catering">Catering</a></li>
+          <li><a href="#locations">Locations</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#" class="login-btn">Login</a></li>
+          <li><a class="btn btn-order" href="https://example.com/order" target="_blank" rel="noopener">Order Online</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="mobileNav" class="mobile-nav" role="dialog" aria-modal="false">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#catering">Catering</a>
+      <a href="#locations">Locations</a>
+      <a href="#contact">Contact</a>
+      <a href="#" class="login-btn">Login</a>
+      <a class="btn btn-order" href="https://example.com/order" target="_blank" rel="noopener">Order Online</a>
+    </div>
+  </header>
 
-        for (let index=0;index<10;index++){
-            document.write("<h1>Hello "+index+"</h1>");  
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="content">
+      <h1>We’re passionate about fresh flavors.<br/>Sip and enjoy with us!</h1>
+      <p>From bold espresso to flaky baklava and vibrant salads, our Aroma-inspired menu is crafted daily with care.</p>
+      <div class="cta">
+        <a class="btn btn-order" href="https://example.com/order" target="_blank" rel="noopener">Order Online</a>
+        <a class="btn btn-outline" href="#menu">Explore Menu</a>
+      </div>
+    </div>
+  </section>
 
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container about-grid reveal">
+      <div class="about-card">
+        <h2 class="section-title">Welcome to Aroma Espresso Sip Cafe</h2>
+        <p class="section-sub">Fresh coffee, all-day breakfast, light lunches & sweet treats—rooted in Mediterranean simplicity.</p>
+        <p>We start with quality: responsibly sourced beans, seasonal produce, extra-virgin olive oil, and herbs that brighten every bite. Enjoy fluffy omelettes, hearty shakshuka, crisp salads, artisanal sandwiches, and pastry classics baked daily. Whether you’re grabbing a morning cappuccino or planning a cozy brunch, we’ve got a seat and a smile waiting.</p>
+        <p class="helper">Free Wi-Fi • Vegetarian friendly • Non-dairy milks • House-made dressings</p>
+      </div>
+      <img src="https://gstatic1.promeai.pro/gallery/publish/2025/01/05/ebed1dcb94a8415eb61c5f20b6ecb50e.jpg" alt="Sunlit Aroma-inspired cafe interior with coffee and pastries">
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section id="menu" class="menu">
+    <div class="container">
+      <h2 class="section-title reveal">Our Menu</h2>
+      <p class="section-sub reveal">All-day breakfast, handcrafted drinks, green & grain salads, and freshly baked pastries.</p>
+
+      <div class="tabs reveal" role="tablist" aria-label="Menu categories">
+        <button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-breakfast" id="tab-breakfast">Breakfast</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-drinks" id="tab-drinks">Drinks</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-salads" id="tab-salads">Salads</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-pastries" id="tab-pastries">Pastries</button>
+      </div>
+
+      <!-- Breakfast -->
+      <div id="panel-breakfast" class="menu-panel" role="tabpanel" aria-labelledby="tab-breakfast">
+        <div class="menu-grid">
+          <article class="card reveal">
+            <img src="https://assets.ju.st/is/750x750/smart/filters:format(jpg):quality(80)/f/111747/2975x2976/cc39ae8d6f/fines-herb-omelette-bite-on-plate-sq.jpg" alt="Herb omelette on a plate">
+            <div class="info">
+              <h4>Herb Omelette <span class="pill">All-Day</span></h4>
+              <p>Fluffy eggs with dill, parsley, feta & tomatoes. Served with toast.</p>
+              <strong class="price">NPR 900</strong>
+              <button class="btn btn-order order-item" data-item="Herb Omelette">Order Now</button>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://www.themediterraneandish.com/wp-content/uploads/2017/01/Shakshuka-Recipe-The-Mediterranean-Dish-100.jpg" alt="Shakshuka in skillet">
+            <div class="info">
+              <h4>Shakshuka Skillet</h4>
+              <p>Poached eggs in spiced tomato-pepper sauce with warm pita.</p>
+              <strong class="price">NPR 1050</strong>
+              <button class="btn btn-order order-item" data-item="Shakshuka Skillet">Order Now</button>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://californiagrown.org/wp-content/uploads/2023/04/DSC_0531.jpg" alt="Avocado toast with greens">
+            <div class="info">
+              <h4>Avocado Toast</h4>
+              <p>Multigrain, smashed avocado, lemon zest, chili flakes & arugula.</p>
+              <strong class="price">NPR 550</strong>
+              <button class="btn btn-order order-item" data-item="Avocado Toast">Order Now</button>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://foolproofliving.com/wp-content/uploads/2017/12/Greek-Yogurt-Parfait-with-fruit.jpg" alt="Greek yogurt parfait with granola and berries">
+            <div class="info">
+              <h4>Greek Yogurt Parfait</h4>
+              <p>House granola, honey, seasonal berries & toasted almonds.</p>
+              <strong class="price">NPR 650</strong>
+              <button class="btn btn-order order-item" data-item="Greek Yogurt Parfait">Order Now</button>
+            </div>
+          </article>
+        </div>
+        <p class="menu-note">Add-ons: halloumi, smoked salmon, or extra egg (+$1.50).</p>
+      </div>
+
+      <!-- Drinks -->
+      <div id="panel-drinks" class="menu-panel" role="tabpanel" aria-labelledby="tab-drinks" hidden>
+        <div class="menu-grid">
+          <article class="card reveal">
+            <img src="https://blogstudio.s3.theshoppad.net/coffeeheroau/ec178d83e5f597b162cda1e60cb64194.jpg" alt="A cup of espresso">
+            <div class="info">
+              <h4>Classic Espresso</h4>
+              <p>Rich, syrupy shot pulled from our seasonal single origin.</p>
+              <strong class="price">NPR 775</strong>
+              <button class="btn btn-order order-item" data-item="Classic Espresso">Order Now</button>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://cdn.greenplantation.com/2020/07/latte-art-ruze.jpg" alt="Cappuccino with latte art">
+            <div class="info">
+              <h4>Cappuccino</h4>
+              <p>Velvety foam with notes of cacao & toasted sugar.</p>
+              <strong class="price">NPR 380</strong>
+              <button class="btn btn-order order-item" data-item="Cappuccino">Order Now</button>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://www.cameronscoffee.com/cdn/shop/articles/camerons_coffee_cafe_glace2-scaled_5a9451e5-cacb-4d8b-9778-221c2a5d0dc5.jpg?v=1751567415" alt="Iced coffee glass with ice cubes">
+            <div class="info">
+              <h4>Cold Brew</h4>
+              <p>Slow-steeped for 16 hours. Smooth, bold & refreshing.</p>
+              <strong class="price">NPR 450</strong>
+              <button class="btn btn-order order-item" data-item="Cold Brew">Order Now</button>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://assets.clevelandclinic.org/transform/a3ec7f82-35f9-4e41-8450-030498e44617/spearmint-Tea-1418206475_770x533_jpg" alt="Mint tea in glass cup">
+            <div class="info">
+              <h4>Moroccan Mint Tea</h4>
+              <p>Fresh mint, green tea & a touch of honey.</p>
+              <strong class="price">NPR 380</strong>
+              <button class="btn btn-order order-item" data-item="Moroccan Mint Tea">Order Now</button>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Salads -->
+      <div id="panel-salads" class="menu-panel" role="tabpanel" aria-labelledby="tab-salads" hidden>
+        <div class="menu-grid">
+          <article class="card reveal">
+            <img src="https://www.aheadofthyme.com/wp-content/uploads/2016/03/the-perfect-greek-salad-7.jpg" alt="Greek salad with olives and feta">
+            <div class="info">
+              <h4>Greek Village Salad</h4>
+              <p>Cucumber, tomato, olives, feta, oregano & lemon-olive oil.</p>
+              <strong class="price">NPR 999</strong>
+              <button class="btn btn-order order-item" data-item="Greek Village Salad">Order Now</button>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://images.101cookbooks.com/quinoa-salad-h.jpg?w=1200&auto=compress&auto=format" alt="Quinoa salad with herbs">
+            <div class="info">
+              <h4>Mediterranean Quinoa</h4>
+              <p>Quinoa, roasted peppers, chickpeas, herbs & tahini lemon.</p>
+              <strong class="price">NPR 1120</strong>
+              <button class="btn btn-order order-item" data-item="Mediterranean Quinoa">Order Now</button>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://cdn.prod.website-files.com/63ca3639daa24262095b05af/63e3727fbf38778c49b486a4_61ce974cb2978ca82a5da03c_Fattoush-Salad-Sensei%20Farms%202-p-1080.jpg" alt="Fattoush salad with crisp pita">
+            <div class="info">
+              <h4>Fattoush</h4>
+              <p>Crisp pita, sumac dressing, tomatoes, greens & cucumbers.</p>
+              <strong class="price">NPR 990</strong>
+              <button class="btn btn-order order-item" data-item="Fattoush">Order Now</button>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://www.eatingbirdfood.com/wp-content/uploads/2022/03/super-food-salmon-salad-hero.jpg" alt="Salmon salad with greens">
+            <div class="info">
+              <h4>Lemon Salmon Bowl</h4>
+              <p>Grilled salmon, grains, arugula, pickled onion & dill yogurt.</p>
+              <strong class="price">NPR 250</strong>
+              <button class="btn btn-order order-item" data-item="Lemon Salmon Bowl">Order Now</button>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Pastries -->
+      <div id="panel-pastries" class="menu-panel" role="tabpanel" aria-labelledby="tab-pastries" hidden>
+        <div class="menu-grid">
+          <article class="card reveal">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPD4zUoTBei_LVLmT5uIoM4gXcYoz135AGw&s" alt="Buttery croissant">
+            <div class="info">
+              <h4>Butter Croissant</h4>
+              <p>Layered & flaky, baked fresh every morning.</p>
+              <strong class="price">NPR 420</strong>
+              <button class="btn btn-order order-item" data-item="Butter Croissant">Order Now</button>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://wedderspoon.com/cdn/shop/articles/WS-Baklava-Thumb_800x800.jpg?v=1529340802" alt="Honey baklava">
+            <div class="info">
+              <h4>Pistachio Baklava</h4>
+              <p>Delicate phyllo with pistachios & orange blossom honey.</p>
+              <strong class="price">NPR 580</strong>
+              <button class="btn btn-order order-item" data-item="Pistachio Baklava">Order Now</button>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://www.rainbownourishments.com/wp-content/uploads/2025/02/vegan-jumbo-blueberry-muffins-2-1.jpg" alt="Blueberry muffin">
+            <div class="info">
+              <h4>Blueberry Muffin</h4>
+              <p>Studded with berries & finished with lemon sugar.</p>
+              <strong class="price">NPR 415</strong>
+              <button class="btn btn-order order-item" data-item="Blueberry Muffin">Order Now</button>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://handletheheat.com/wp-content/uploads/2020/10/BAKERY-STYLE-CHOCOLATE-CHIP-COOKIES-9-637x637-1.jpg" alt="Chocolate chip cookie">
+            <div class="info">
+              <h4>Sea-Salt Chocolate Cookie</h4>
+              <p>Chewy center, crisp edges & a sprinkle of flaky salt.</p>
+              <strong class="price">NPR 220</strong>
+              <button class="btn btn-order order-item" data-item="Sea-Salt Chocolate Cookie">Order Now</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catering -->
+  <section id="catering" class="catering">
+    <div class="container wrap">
+      <div class="reveal">
+        <h2 class="section-title">Catering for Every Occasion</h2>
+        <p class="section-sub">From team breakfasts to weekend celebrations, we’ve got trays of salads, sandwiches, pastries & coffee boxes ready to go.</p>
+        <ul>
+          <li>Seasonal salad bowls with house dressings</li>
+          <li>Mediterranean sandwich platters (veg & non-veg)</li>
+          <li>Baklava & pastry assortments</li>
+          <li>Hot coffee cambros & cold brew growlers</li>
+        </ul>
+        <p class="helper">Tell us about your event and we’ll tailor a menu that fits your guests & budget.</p>
+        <div class="success" id="cateringSuccess" role="status" aria-live="polite">Thanks! We received your message and will get back to you shortly.</div>
+      </div>
+      <form id="cateringForm" class="reveal" novalidate aria-labelledby="cateringFormTitle">
+        <h3 id="cateringFormTitle" style="margin:0 0 6px;font-family:'Playfair Display',serif;color:var(--accent)">Request Catering</h3>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" placeholder="Your full name" required />
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        <label for="message">Event Details</label>
+        <textarea id="message" name="message" placeholder="Date, time, headcount, dietary needs..." required></textarea>
+        <button class="btn btn-order" type="submit">Send Request</button>
+        <small class="helper">We respect your privacy and will never share your information.</small>
+      </form>
+    </div>
+  </section>
+
+  <!-- Social Feed (Carousel) -->
+  <section id="social" class="social">
+    <div class="container">
+      <h2 class="section-title reveal">Fresh from Our Feed</h2>
+      <p class="section-sub reveal">Follow the flavors—swirls of crema, golden pastries, and greens that pop.</p>
+
+      <div class="carousel reveal" aria-roledescription="carousel" aria-label="Social posts">
+        <div class="track" id="carouselTrack">
+          <!-- Slides -->
+          <figure class="slide">
+            <img src="https://img.freepik.com/premium-photo/cold-brew-coffee-drink-with-ice-cubes_6724-29915.jpg" alt="Tall glass of iced coffee with condensation">
+            <figcaption class="overlay">
+              <div>
+                <div class="meta">Cool Iced Brew! • ♥ 324 • 💬 18</div>
+                <div class="hash">#coldbrew #chill #summer</div>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="https://thumbs.dreamstime.com/b/warm-coffee-intricate-latte-art-paired-buttery-croissant-rustic-wooden-surface-steaming-cup-adorned-beautiful-sits-350808438.jpg" alt="Croissant next to cappuccino with latte art">
+            <figcaption class="overlay">
+              <div><div class="meta">Morning Pairing • ♥ 452 • 💬 22</div><div class="hash">#croissant #latte #breakfast</div></div>
+            </figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGScmcw_-b56g9014KsZaiJmptvh0RKabqhg&s" alt="Vibrant Mediterranean salad bowl">
+            <figcaption class="overlay">
+              <div><div class="meta">Greens that sing • ♥ 289 • 💬 11</div><div class="hash">#salad #fresh #oliveoil</div></div>
+            </figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="https://static.ticimax.cloud/54612/uploads/urunresimleri/buyuk/fistikli-havuc-dilim-baklava-tepside-1-bfc7-b.jpg" alt="Baklava slices with pistachios">
+            <figcaption class="overlay">
+              <div><div class="meta">Honeyed layers • ♥ 501 • 💬 35</div><div class="hash">#baklava #sweet #phyllo</div></div>
+            </figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="https://fromlexspantry.com/cdn/shop/articles/Shakshuka_in_cast_iron_-_from_lexs_pantry_-_merguez_spice.jpg?v=1753373111&width=1100" alt="Shakshuka bubbling in skillet">
+            <figcaption class="overlay">
+              <div><div class="meta">Brunch favorite • ♥ 405 • 💬 27</div><div class="hash">#shakshuka #brunch #spice</div></div>
+            </figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="https://prestocoffee.com/cdn/shop/articles/kevin-butz-BBFRIGifYQ8-unsplash.jpg?v=1631646556" alt="Espresso shot being pulled at bar">
+            <figcaption class="overlay">
+              <div><div class="meta">Crema dreams • ♥ 367 • 💬 19</div><div class="hash">#espresso #crema #beans</div></div>
+            </figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="https://nourishedbynic.com/wp-content/uploads/2024/06/veggie-mediterranean-sandwich.jpg" alt="Mediterranean sandwich with greens">
+            <figcaption class="overlay">
+              <div><div class="meta">Stacked & savory • ♥ 298 • 💬 13</div><div class="hash">#sandwich #halloumi #fresh</div></div>
+            </figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="https://www.foodandwine.com/thmb/2tI8aL1Z8hKhfV48_c8b6uWG-TQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Iced-Matcha-Latte-FT-RECIPE0622-2000-9c2e116d3bc54bdaacda10e62e8e0205.jpg" alt="Green matcha latte">
+            <figcaption class="overlay">
+              <div><div class="meta">Green glow • ♥ 221 • 💬 9</div><div class="hash">#matcha #latte #antioxidants</div></div>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="controls" aria-hidden="false">
+          <button id="prevBtn" aria-label="Previous slide">‹</button>
+          <button id="nextBtn" aria-label="Next slide">›</button>
+        </div>
+        <div class="dots" id="dots" aria-hidden="false" aria-label="Slide indicators"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations -->
+  <section id="locations" class="locations">
+    <div class="container">
+      <h2 class="section-title reveal">Locations & Hours</h2>
+      <p class="section-sub reveal">Visit us soon—sunny spaces, friendly faces, and the aroma of fresh brews.</p>
+
+      <div class="grid">
+        <div class="loc reveal">
+          <h4 style="margin:0 0 6px;font-family:'Playfair Display',serif;color:var(--accent)">Downtown</h4>
+          <small>Baneshwor • Mon-Fri 7–6, Sat-Sun 8–5</small>
+          <div class="hours">☎ (977) 9876566787 • pickup & dine-in</div>
+          <div class="map">
+            <img src="https://bucketlistbri.com/wp-content/uploads/2023/10/kathmandu-digital-nomad-nepal.jpeg" alt="City street near café">
+          </div>
+        </div>
+        <div class="loc reveal">
+          <h4 style="margin:0 0 6px;font-family:'Playfair Display',serif;color:var(--accent)">Seaside</h4>
+          <small>Beside River • Daily 8–6</small>
+          <div class="hours">☎ (977) 9764498748 • patio seating</div>
+          <div class="map">
+            <img src="https://mywalkinmanhattan.com/wp-content/uploads/2024/07/img_7350.jpg?w=1024" alt="Seaside boardwalk near café">
+          </div>
+        </div>
+        <div class="loc reveal">
+          <h4 style="margin:0 0 6px;font-family:'Playfair Display',serif;color:var(--accent)">Market Hall</h4>
+          <small>200 Market Square • Mon-Sat 8–7</small>
+          <div class="hours">☎ (977) 9857648945 • bustling food hall</div>
+          <div class="map">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/%C3%96stermalms_saluhall_1.jpg/1200px-%C3%96stermalms_saluhall_1.jpg" alt="Indoor market hall">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container reveal">
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-sub">Questions about the menu or large orders? We’re here to help.</p>
+      <a class="btn btn-outline" href="mailto:hello@AromaEspressoSipCafe.example">Email: hello@AromaEspressoSipCafe.example</a>
+      <span style="margin-left:10px"></span>
+      <a class="btn btn-order" href="https://example.com/order" target="_blank" rel="noopener">Order Online</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container foot">
+      <div class="foot-grid">
+        <div>
+          <div class="logo" style="color:#fff"><span class="leaf" aria-hidden="true"></span> Aroma Espresso Sip Cafe</div>
+          <p class="copyright">© 2025 Aroma Espresso Sip Cafe • </p>
+        </div>
+        <div>
+          <h4 style="margin-top:0">Legal</h4>
+          <p><a href="https://example.com/privacy" target="_blank" rel="noopener">Privacy Policy</a><br>
+             <a href="https://example.com/terms" target="_blank" rel="noopener">Terms of Use</a></p>
+        </div>
+        <div>
+          <h4 style="margin-top:0">Follow</h4>
+          <div class="socials" aria-label="Social media links">
+            <a href="https://example.com/instagram" aria-label="Instagram" target="_blank" rel="noopener">
+              <!-- Instagram-like icon -->
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zM18 6.3a1 1 0 1 1 1 1 1 1 0 0 1-1-1z"/></svg>
+            </a>
+            <a href="https://example.com/facebook" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.7c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
+            </a>
+            <a href="https://example.com/tiktok" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M21 8.3a7.2 7.2 0 0 1-4.4-1.5v7.7a5.6 5.6 0 1 1-5.6-5.6c.3 0 .7 0 1 .1v2.7a2.9 2.9 0 1 0 2.9 2.9V3h2.6a4.7 4.7 0 0 0 3.5 3.3V8.3z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== LOGIN / SIGNUP MODAL ===== -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <!-- LOGIN FORM -->
+      <div id="loginForm">
+        <h2>Welcome Back</h2>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password">
+        <button id="loginBtn">Login</button>
+        <p>Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
+      </div>
+
+      <!-- SIGNUP FORM -->
+      <div id="signupForm" style="display:none;">
+        <h2>Create Account</h2>
+        <input type="text" id="signupUsername" placeholder="Username">
+        <input type="email" id="signupEmail" placeholder="Email">
+        <input type="password" id="signupPassword" placeholder="Password">
+        <input type="password" id="signupConfirmPassword" placeholder="Confirm Password">
+        <button id="signupBtn">Sign Up</button>
+        <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ORDER CONFIRMATION MODAL ===== -->
+  <div id="orderModal" class="modal">
+    <div class="modal-content">
+      <span class="close order-close">&times;</span>
+      <h2>Order Confirmed!</h2>
+      <p id="orderMessage">Your order has been placed successfully.</p>
+      <button id="orderOk">OK</button>
+    </div>
+  </div>
+
+  <script>
+    // Mobile nav toggle
+    const burger = document.querySelector('.hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    burger?.addEventListener('click', () => {
+      const expanded = burger.getAttribute('aria-expanded') === 'true';
+      burger.setAttribute('aria-expanded', String(!expanded));
+      mobileNav.style.display = expanded ? 'none' : 'block';
+    });
+    // Close mobile menu after clicking a link
+    mobileNav.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', ()=>{
+        burger.setAttribute('aria-expanded','false');
+        mobileNav.style.display='none';
+      });
+    });
+
+    // Tabs (Menu)
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.menu-panel');
+    function activateTab(id){
+      tabs.forEach(t=>t.setAttribute('aria-selected', String(t.id === 'tab-' + id)));
+      panels.forEach(p=>p.hidden = p.id !== 'panel-' + id);
+    }
+    tabs.forEach(btn=>{
+      btn.addEventListener('click', ()=> activateTab(btn.id.replace('tab-','')));
+    });
+    // Initialize
+    activateTab('breakfast');
+
+    // IntersectionObserver reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
         }
+      });
+    }, {threshold: .12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-        //if(value < 18){
-           // document.write("<h1>You are a minor.<h1>");
-       // } else if (value > 18 && value < 60) {
-           // document.write("<h1>You are an adult.<h1>");
-       // } else if (value > 60 && value < 100) {
-           // document.write(" <h1>You are a middle-aged person.<h1>");
-       // } else {
-            //document.write("<h1>You are a senior citizen.<h1>");
-        
-        
-        // alert("The following site is under maintainence, Expect");'
+    // Catering form validation
+    const form = document.getElementById('cateringForm');
+    const success = document.getElementById('cateringSuccess');
+    function validEmail(v){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      if(!name){alert('Please enter your name.'); form.name.focus(); return;}
+      if(!validEmail(email)){alert('Please enter a valid email.'); form.email.focus(); return;}
+      if(message.length < 10){alert('Please add a few details about your event.'); form.message.focus(); return;}
+      success.style.display='block';
+      form.reset();
+      setTimeout(()=> success.style.display='none', 5000);
+    });
 
-        // confirm("What is your name");
+    // Social Carousel
+    const track = document.getElementById('carouselTrack');
+    const slides = Array.from(track.children);
+    const prev = document.getElementById('prevBtn');
+    const next = document.getElementById('nextBtn');
+    const dotsWrap = document.getElementById('dots');
+    let index = 0, timer;
 
+    function setIndex(i){
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index*100}%)`;
+      updateDots();
+      restartAuto();
+    }
+    function updateDots(){
+      dotsWrap.querySelectorAll('.dot').forEach((d,di)=> d.setAttribute('aria-current', String(di===index)));
+    }
+    // Build dots
+    slides.forEach((_,i)=>{
+      const d=document.createElement('button');
+      d.className='dot';
+      d.type='button';
+      d.addEventListener('click', ()=> setIndex(i));
+      dotsWrap.appendChild(d);
+    });
+    updateDots();
 
-        // prompt("Enter your name");
+    prev.addEventListener('click', ()=> setIndex(index-1));
+    next.addEventListener('click', ()=> setIndex(index+1));
 
-        //let a=10,b=5;
-        //alert("sum is:"+(a+b));
-        //let c="landing",d="putting";
-        //alert("sum is :"+(c+d));
+    function autoSlide(){ setIndex(index+1); }
+    function restartAuto(){
+      clearInterval(timer);
+      timer = setInterval(autoSlide, 5000);
+    }
+    restartAuto();
+    // Pause on hover
+    track.addEventListener('mouseenter', ()=> clearInterval(timer));
+    track.addEventListener('mouseleave', restartAuto);
+    // Make slides equal to container width on resize (for safety)
+    window.addEventListener('resize', ()=> setIndex(index));
 
+    // ===== LOGIN/SIGNUP JS =====
+    const modal = document.getElementById("authModal");
+    const closeModal = document.querySelector(".close");
+    const showLogin = document.getElementById("showLogin");
+    const showSignup = document.getElementById("showSignup");
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
 
-//         let age=20;
-//         if (age > 18) {
-//             console.log("Adult");
-//         } else {
-//             console.log("Minor");
-//         }
+    // Open modal
+    document.querySelectorAll(".login-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.style.display = "block";
+        loginForm.style.display = "block";
+        signupForm.style.display = "none";
+      });
+    });
 
+    // Close modal
+    closeModal.addEventListener("click", () => modal.style.display = "none");
+    window.addEventListener("click", (e) => {
+      if (e.target == modal) modal.style.display = "none";
+    });
 
+    // Switch forms
+    showSignup.addEventListener("click", (e) => {
+      e.preventDefault();
+      loginForm.style.display = "none";
+      signupForm.style.display = "block";
+    });
 
-//    confirm("Are you sure you want to leave this page");
-//    prompt("Enter your name");
-   </script>
-    
-    
+    showLogin.addEventListener("click", (e) => {
+      e.preventDefault();
+      signupForm.style.display = "none";
+      loginForm.style.display = "block";
+    });
+
+    // Login
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      let user = document.getElementById("loginUsername").value.trim();
+      let pass = document.getElementById("loginPassword").value.trim();
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      let found = users.find(u => u.username === user && u.password === pass);
+
+      if (!user || !pass) {
+        alert("Please fill all fields");
+        return;
+      }
+      if (found) {
+        alert(`Welcome back, ${user}!`);
+        modal.style.display = "none";
+      } else {
+        alert("Invalid username or password");
+      }
+    });
+
+    // Signup
+    document.getElementById("signupBtn").addEventListener("click", () => {
+      let user = document.getElementById("signupUsername").value.trim();
+      let email = document.getElementById("signupEmail").value.trim();
+      let pass = document.getElementById("signupPassword").value.trim();
+      let confirmPass = document.getElementById("signupConfirmPassword").value.trim();
+
+      if (!user || !email || !pass || !confirmPass) {
+        alert("Please fill all fields");
+        return;
+      }
+
+      if (pass !== confirmPass) {
+        alert("Passwords do not match");
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      if (users.some(u => u.username === user)) {
+        alert("Username already exists");
+        return;
+      }
+
+      users.push({ username: user, email: email, password: pass });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      alert(`Account created for ${user}`);
+      signupForm.style.display = "none";
+      loginForm.style.display = "block";
+    });
+
+    // ===== ORDER POP-UP JS =====
+    const orderModal = document.getElementById("orderModal");
+    const orderClose = document.querySelector(".order-close");
+    const orderMessage = document.getElementById("orderMessage");
+    const orderOk = document.getElementById("orderOk");
+    const orderButtons = document.querySelectorAll(".order-item");
+
+    orderButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const item = btn.dataset.item;
+        orderMessage.textContent = `Your order for ${item} has been placed successfully!`;
+        orderModal.style.display = "block";
+      });
+    });
+
+    orderClose.addEventListener("click", () => orderModal.style.display = "none");
+    orderOk.addEventListener("click", () => orderModal.style.display = "none");
+    window.addEventListener("click", (e) => {
+      if (e.target == orderModal) orderModal.style.display = "none";
+    });
+  </script>
 </body>
 </html>
